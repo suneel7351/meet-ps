@@ -16,7 +16,7 @@ async function sendMail(user_email, subject, html) {
         const options = {
             from: process.env.EMAIL_USER,
             to: user_email,
-            cc: "sujit@ceoitbox.in",
+            // cc: "sujit@ceoitbox.in",
             subject,
             html,
 

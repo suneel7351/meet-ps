@@ -60,7 +60,7 @@ app.use(expressSession({
 const PORT = process.env.PORT || 4994
 app.use(cors({
     credentials: true,
-    // origin: "http://localhost:3000",
+    origin: "http://localhost:3000",
     // methods: ['GET', 'POST', 'PUT', 'DELETE']
 }))
 app.use("/api/v1", router)
@@ -173,22 +173,7 @@ app.get('/auth/google/callback', passport.authenticate('google'), async (req, re
 
 
 
-    // await reminderExpToken(form_, user)
-
-
-
-    // const response = axios.post(process.env.SCRIPT_LINK, form, {
-    //     headers: {
-    //         'Content-Type': 'multipart/form-data',
-    //         'Authorization': `Bearer ${token}`,
-    //     }
-    // }).then(() => {
-    //     console.log("no error");
-    // }).catch((err) => {
-    //     console.log(err);
-    // })
-
-    // console.log(response);
+   
 
 
     if (user.registered) {
@@ -205,7 +190,7 @@ app.get('/auth/google/callback', passport.authenticate('google'), async (req, re
 
 });
 
-// reminderExpToken("form", "token", { name: "suneel", email: "demo@gmail.com", refresh_token_expires: "4893" })
+
 
 async function reminderExpToken(form_, user) {
     let x = new Date(user.refresh_token_expires)
@@ -428,7 +413,6 @@ app.get("/api/v1/users", async (req, res) => {
             // .skip(skipCount)
             // .limit(perPage)
             .populate("event");
-console.log(users.length)
         res.status(200).json({
             success: true, users,
             totalPages,
@@ -467,6 +451,8 @@ app.get("/api/v1/sync-event/:ownerId", async (req, res) => {
         });
 
         const events = response.data.items;
+
+        
 
         const dateAndTimeArray = events.map(event => {
             const startDateTime = DateTime.fromISO(event.start.dateTime, { zone: 'utc' }).setZone('Asia/Kolkata');

@@ -76,7 +76,7 @@ class ClientController {
                 { path: "user", model: "user" },
                 { path: "client", model: "client" },
             ])
-
+            console.log(bookedEvents);
             res.status(200).json({ success: true, events: bookedEvents })
         } catch (error) {
             console.log(error.message);
