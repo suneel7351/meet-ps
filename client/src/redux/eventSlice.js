@@ -69,7 +69,7 @@ const eventSlice = createSlice({
 
 export const createEvent = createAsyncThunk('auth/create-event', async (info,{rejectWithValue}) => {
     try {
-        const { data } = await axios.post(`/api/v1/create-event`, {
+        const { data } = await axios.post(`${url}/api/v1/create-event`, {
             name: info.name,
             description: info.description,
             location: info.location,
@@ -90,7 +90,7 @@ export const createEvent = createAsyncThunk('auth/create-event', async (info,{re
 });
 export const deleteEvent = createAsyncThunk('auth/delete-event', async (eventId, { rejectWithValue }) => {
     try {
-        const { data } = await axios.delete(`/api/v1/delete-event/${eventId}`, {
+        const { data } = await axios.delete(`${url}/api/v1/delete-event/${eventId}`, {
             headers: {
                 "Content-Type": "application/json",
             },
@@ -103,7 +103,7 @@ export const deleteEvent = createAsyncThunk('auth/delete-event', async (eventId,
 });
 export const getSingleEvent = createAsyncThunk('auth/single-event', async (id, { rejectWithValue }) => {
     try {
-        const { data } = await axios.get(`/api/v1/single-event/${id}`, {
+        const { data } = await axios.get(`${url}/api/v1/single-event/${id}`, {
             headers: {
                 "Content-Type": "application/json",
             },
@@ -116,7 +116,7 @@ export const getSingleEvent = createAsyncThunk('auth/single-event', async (id, {
 });
 export const editEvent = createAsyncThunk('auth/edit-event', async (info, { rejectWithValue }) => {
     try {
-        const { data } = await axios.put(`/api/v1/event/${info.id}`, {
+        const { data } = await axios.put(`${url}/api/v1/event/${info.id}`, {
             name: info.updateName,
             duration: info.updateDuration,
             location: info.updateLocation,

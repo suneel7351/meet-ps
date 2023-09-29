@@ -173,7 +173,7 @@ const adminSlice = createSlice({
 
 export const adminLogin = createAsyncThunk('admin/login', async (info, { rejectWithValue }) => {
     try {
-        const { data } = await axios.post(`/api/v2/login`, {
+        const { data } = await axios.post(`${url}/api/v2/login`, {
             email: info.email,
             password: info.password
 
@@ -190,7 +190,7 @@ export const adminLogin = createAsyncThunk('admin/login', async (info, { rejectW
 });
 export const getAdmin = createAsyncThunk('admin/me', async (info, { rejectWithValue }) => {
     try {
-        const { data } = await axios.get(`/api/v2/me`, {
+        const { data } = await axios.get(`${url}/api/v2/me`, {
             withCredentials: true
         });
         return data.admin;
@@ -200,7 +200,7 @@ export const getAdmin = createAsyncThunk('admin/me', async (info, { rejectWithVa
 });
 export const adminLogout = createAsyncThunk('admin/logout', async (demo, { rejectWithValue }) => {
     try {
-        const { data } = await axios.get(`/api/v2/logout`, {
+        const { data } = await axios.get(`${url}/api/v2/logout`, {
             withCredentials: true
         });
         return data.message;
@@ -210,7 +210,7 @@ export const adminLogout = createAsyncThunk('admin/logout', async (demo, { rejec
 });
 export const createClient = createAsyncThunk('admin/new-client', async (info, { rejectWithValue }) => {
     try {
-        const { data } = await axios.post(`/api/v2/new-client`, {
+        const { data } = await axios.post(`${url}/api/v2/new-client`, {
             name: info.name,
             company: info.company,
             email: info.email,
@@ -229,7 +229,7 @@ export const createClient = createAsyncThunk('admin/new-client', async (info, { 
 });
 export const getAllClients = createAsyncThunk('admin/get-clients', async (info, { rejectWithValue }) => {
     try {
-        const { data } = await axios.get(`/api/v2/clients?name=${info.name}&company=${info.company}&email=${info.email}`,
+        const { data } = await axios.get(`${url}/api/v2/clients?name=${info.name}&company=${info.company}&email=${info.email}`,
             // {
             //     params: {
             //         name: info.name || "",
@@ -247,7 +247,7 @@ export const getAllClients = createAsyncThunk('admin/get-clients', async (info, 
 });
 export const getAllUsers = createAsyncThunk('admin/get-users', async (info, { rejectWithValue }) => {
     try {
-        const { data } = await axios.get(`/api/v2/users?name=${info.name}&email=${info.email}`, {
+        const { data } = await axios.get(`${url}/api/v2/users?name=${info.name}&email=${info.email}`, {
             withCredentials: true
         });
         return data.users;
@@ -260,7 +260,7 @@ export const updateUserApproval = createAsyncThunk(
     'admin/update-user-approval',
     async (_id, { rejectWithValue }) => {
         try {
-            const { data } = await axios.put(`/api/v2/users`, { _id }, {
+            const { data } = await axios.put(`${url}/api/v2/users`, { _id }, {
                 withCredentials: true
             });
             return data.users;
@@ -273,7 +273,7 @@ export const updateClient = createAsyncThunk(
     'admin/update-client',
     async (user, { rejectWithValue }) => {
         try {
-            const { data } = await axios.put(`/api/v2/client`, { _id: user._id, name: user.name, company: user.company, password: user.password, email: user.email }, {
+            const { data } = await axios.put(`${url}/api/v2/client`, { _id: user._id, name: user.name, company: user.company, password: user.password, email: user.email }, {
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -289,7 +289,7 @@ export const deleteClient = createAsyncThunk(
     'admin/delete-client',
     async (_id, { rejectWithValue }) => {
         try {
-            const { data } = await axios.delete(`/api/v2/client/${_id}`, {
+            const { data } = await axios.delete(`${url}/api/v2/client/${_id}`, {
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -308,7 +308,7 @@ export const updateClientApproval = createAsyncThunk(
     'admin/update-client-approval',
     async (_id, { rejectWithValue }) => {
         try {
-            const { data } = await axios.put(`/api/v2/client/approve`, { _id }, {
+            const { data } = await axios.put(`${url}/api/v2/client/approve`, { _id }, {
                 withCredentials: true
             });
             return data.clients;
@@ -321,7 +321,7 @@ export const getAllBookedEvents = createAsyncThunk(
     'admin/booked',
     async (_id, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get(`/api/v2/booked-events`, {
+            const { data } = await axios.get(`${url}/api/v2/booked-events`, {
                 withCredentials: true
             });
             return data.bookedEvents;

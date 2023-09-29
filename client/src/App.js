@@ -74,7 +74,7 @@ function App() {
   return (
     <Router>
       <NavbarWrapper>
-        <div className="min-h-screen py-2" style={{ backgroundImage: `url('/bg3.jpeg')`, backgroundSize: 'cover' }}>
+        <div className="min-h-screen py-2 bg-gray-50" >
 
           <Routes>
             <Route exact path="/" element={<AuthComponent />} />

@@ -91,7 +91,7 @@ const authSlice = createSlice({
 
 export const profile = createAsyncThunk('auth/me', async (demo, { rejectWithValue }) => {
     try {
-        const { data } = await axios.get(`/api/v1/me`, {
+        const { data } = await axios.get(`${url}/api/v1/me`, {
             withCredentials: true
         });
         return data;
@@ -102,7 +102,7 @@ export const profile = createAsyncThunk('auth/me', async (demo, { rejectWithValu
 });
 export const userInfo = createAsyncThunk('auth/details', async (info, { rejectWithValue }) => {
     try {
-        const { data } = await axios.post(`/api/v1/details`, {
+        const { data } = await axios.post(`${url}/api/v1/details`, {
             phone: info.phone,
             avatar: info.avatar,
             expertIn: info.expertIn
@@ -120,7 +120,7 @@ export const userInfo = createAsyncThunk('auth/details', async (info, { rejectWi
 });
 export const setAvailability = createAsyncThunk('auth/availability', async (availability, { rejectWithValue }) => {
     try {
-        const { data } = await axios.post(`/api/v1/availability`, {
+        const { data } = await axios.post(`${url}/api/v1/availability`, {
             weekdays: availability.weekdays, timeSlots: availability.timeSlots
 
         }, {
@@ -136,7 +136,7 @@ export const setAvailability = createAsyncThunk('auth/availability', async (avai
 });
 export const updateProfile = createAsyncThunk('auth/updateProfile', async (info, { rejectWithValue }) => {
     try {
-        const { data } = await axios.put(`/api/v1/update`, {
+        const { data } = await axios.put(`${url}/api/v1/update`, {
             name: info.name,
             avatar: info.avatar,
             phone: info.phone,
@@ -155,7 +155,7 @@ export const updateProfile = createAsyncThunk('auth/updateProfile', async (info,
 });
 export const addHoliday = createAsyncThunk('auth/holiday', async (holiday, { rejectWithValue }) => {
     try {
-        const { data } = await axios.post(`/api/v1/add-holiday`, {
+        const { data } = await axios.post(`${url}/api/v1/add-holiday`, {
             holiday
 
         }, {
@@ -171,7 +171,7 @@ export const addHoliday = createAsyncThunk('auth/holiday', async (holiday, { rej
 });
 export const deleteHoliday = createAsyncThunk('auth/delete-holiday', async (holiday, { rejectWithValue }) => {
     try {
-        const { data } = await axios.post(`/api/v1/delete-holiday`, {
+        const { data } = await axios.post(`${url}/api/v1/delete-holiday`, {
             holiday
 
         }, {
@@ -187,7 +187,7 @@ export const deleteHoliday = createAsyncThunk('auth/delete-holiday', async (holi
 });
 export const logout = createAsyncThunk('auth/logout', async (info, { rejectWithValue }) => {
     try {
-        const { data } = await axios.get(`/api/v1/logout`, {
+        const { data } = await axios.get(`${url}/api/v1/logout`, {
             withCredentials: true
         });
         return data.message;
@@ -197,7 +197,7 @@ export const logout = createAsyncThunk('auth/logout', async (info, { rejectWithV
 });
 export const getAllBookedEvents = createAsyncThunk('auth/events', async (info, { rejectWithValue }) => {
     try {
-        const { data } = await axios.get(`/api/v1/booked-events`, {
+        const { data } = await axios.get(`${url}/api/v1/booked-events`, {
             withCredentials: true
         });
         return data.events;

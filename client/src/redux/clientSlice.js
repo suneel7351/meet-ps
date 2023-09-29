@@ -141,7 +141,7 @@ const clientSlice = createSlice({
 
 export const createClientEvent = createAsyncThunk('auth/create-client-event', async (info, { rejectWithValue }) => {
     try {
-        const { data } = await axios.post(`/api/v1/create-calendar-event`, {
+        const { data } = await axios.post(`${url}/api/v1/create-calendar-event`, {
             eventId: info.eventId, timing: info.timing, organizor: info.organizor, date: info.date, client_email: info.client, loggedEmail: info.loggedEmail, ownerId: info.ownerId,
             emails: info.emailList, remark: info.remark,
             username: info.username
@@ -159,7 +159,7 @@ export const createClientEvent = createAsyncThunk('auth/create-client-event', as
 });
 export const clientLogin = createAsyncThunk('client/login', async (info, { rejectWithValue }) => {
     try {
-        const { data } = await axios.post(`/api/v3/login`, {
+        const { data } = await axios.post(`${url}/api/v3/login`, {
             email: info.email,
             password: info.password
         }, {
@@ -176,7 +176,7 @@ export const clientLogin = createAsyncThunk('client/login', async (info, { rejec
 });
 export const syncGoogleEvent = createAsyncThunk('auth/async-event', async (ownerId, { rejectWithValue }) => {
     try {
-        const { data } = await axios.get(`/api/v1/sync-event/${ownerId}`, {
+        const { data } = await axios.get(`${url}/api/v1/sync-event/${ownerId}`, {
             headers: {
                 "Content-Type": "application/json",
             },
@@ -188,7 +188,7 @@ export const syncGoogleEvent = createAsyncThunk('auth/async-event', async (owner
 });
 export const getProfile = createAsyncThunk('auth/get-profile/', async (id, { rejectWithValue }) => {
     try {
-        const { data } = await axios.get(`/api/v1/get-profile/${id}`, {
+        const { data } = await axios.get(`${url}/api/v1/get-profile/${id}`, {
             headers: {
                 "Content-Type": "application/json",
             },
@@ -200,7 +200,7 @@ export const getProfile = createAsyncThunk('auth/get-profile/', async (id, { rej
 });
 export const getClientProfile = createAsyncThunk('cliient/profile/', async (id, { rejectWithValue }) => {
     try {
-        const { data } = await axios.get(`/api/v3/me`, {
+        const { data } = await axios.get(`${url}/api/v3/me`, {
             headers: {
                 "Content-Type": "application/json",
             },
@@ -213,7 +213,7 @@ export const getClientProfile = createAsyncThunk('cliient/profile/', async (id, 
 });
 export const logoutClient = createAsyncThunk('cliient/logout/', async (id, { rejectWithValue }) => {
     try {
-        const { data } = await axios.get(`/api/v3/logout`, {
+        const { data } = await axios.get(`${url}/api/v3/logout`, {
             headers: {
                 "Content-Type": "application/json",
             },
@@ -226,7 +226,7 @@ export const logoutClient = createAsyncThunk('cliient/logout/', async (id, { rej
 });
 export const getAllUsersClientPage = createAsyncThunk('cliient/users/', async (info, { rejectWithValue }) => {
     try {
-        const { data } = await axios.get(`/api/v1/users?name=${info.name}&page=1`);
+        const { data } = await axios.get(`${url}/api/v1/users?name=${info.name}&page=1`);
         return data;
     } catch (error) {
         return rejectWithValue(error.response.data.message);
@@ -234,7 +234,7 @@ export const getAllUsersClientPage = createAsyncThunk('cliient/users/', async (i
 });
 export const getAllBookedEvents = createAsyncThunk('client/booked/', async (info, { rejectWithValue }) => {
     try {
-        const { data } = await axios.get(`/api/v3/booked-events`);
+        const { data } = await axios.get(`${url}/api/v3/booked-events`);
         return data.events;
     } catch (error) {
         return rejectWithValue(error.response.data.message);

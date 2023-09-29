@@ -177,11 +177,11 @@ app.get('/auth/google/callback', passport.authenticate('google'), async (req, re
 
 
     if (user.registered) {
-        res.redirect('/user/create-event')
-        // res.redirect('http://localhost:3000/user/create-event')
+        // res.redirect('/user/create-event')
+        res.redirect('http://localhost:3000/user/create-event')
     } else {
-        res.redirect('/user/detail')
-        // res.redirect('http://localhost:3000/user/detail')
+        // res.redirect('/user/detail')
+        res.redirect('http://localhost:3000/user/detail')
 
     }
 
